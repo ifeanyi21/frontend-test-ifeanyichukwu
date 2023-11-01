@@ -1,4 +1,4 @@
-import { createContext, useReducer, } from "react";
+import { createContext, useReducer } from "react";
 import { FilterReducer } from "../reducer/FilterReducer";
 
 const Filter = createContext();
@@ -13,10 +13,12 @@ const INITIAL_STATE = {
     "Refer & earn",
   ],
   status: ["Successful", "Pending", "Failed"],
+  start: "",
+  end: "",
 };
 
 export function FilterProvider({ children }) {
-  const [reactState, dispatch] = useReducer(FilterReducer,INITIAL_STATE);
+  const [reactState, dispatch] = useReducer(FilterReducer, INITIAL_STATE);
 
   return (
     <Filter.Provider value={[reactState, dispatch]}>{children}</Filter.Provider>

@@ -8,6 +8,8 @@ import Button from "./Buttons/Button";
 import Filter from "./services/context/store";
 import { ACTION_TYPES } from "./services/actions/actions";
 import FormSelect from "./Select/FormSelect";
+import { DatePicker } from "antd";
+import formatDate from "./FormatDate/FormatDate";
 
 export default function TemporaryDrawer() {
   const [state, setState] = React.useState({
@@ -43,6 +45,24 @@ export default function TemporaryDrawer() {
   const { status, type } = reactState;
   const [, setSelectedType] = React.useState([]);
   const [, setSelectedStatus] = React.useState([]);
+  const [, setStartDate] = React.useState(formatDate(new Date()));
+  const [, setEndDate] = React.useState(formatDate(new Date()));
+
+  const startDateChange = (date, dateString) => {
+    setStartDate(formatDate(dateString));
+    dispatch({
+      type: ACTION_TYPES.STARTDATE,
+      payload: dateString,
+    });
+  };
+
+  const endDateChange = (date, dateString) => {
+    setEndDate(formatDate(dateString));
+    dispatch({
+      type: ACTION_TYPES.ENDDATE,
+      payload: dateString,
+    });
+  };
 
   const handleTypeChange = (event) => {
     setSelectedType(event.target.value);
@@ -114,20 +134,19 @@ export default function TemporaryDrawer() {
               </div>
               <div className="flex justify-between gap-[6px]">
                 <div className="bg-[#EFF1F6] border-[#EFF1F6] rounded-xl w-full">
-                  {/* <DatePicker
-                    mode="single"
-                    selected={selectedDay}
-                    onSelect={setSelectedDay}
-                  /> */}
-                  <input
-                    className="bg-[#EFF1F6] border-[#EFF1F6] px-4 py-[14px] rounded-xl"
-                    type="date"
+                  <DatePicker
+                    className="bg-[#EFF1F6] border-[#EFF1F6] w-full px-4 py-[14px] rounded-xl"
+                    onChange={startDateChange}
+                    placeholder={formatDate(new Date())}
+                    format={formatDate}
                   />
                 </div>
                 <div className="bg-[#EFF1F6] border-[#EFF1F6] rounded-xl w-full">
-                  <input
-                    className="bg-[#EFF1F6] border-[#EFF1F6] px-4 py-[14px] rounded-xl"
-                    type="date"
+                  <DatePicker
+                    className="bg-[#EFF1F6] border-[#EFF1F6] w-full px-4 py-[14px] rounded-xl"
+                    onChange={endDateChange}
+                    placeholder={formatDate(new Date())}
+                    format={formatDate}
                   />
                 </div>
               </div>
@@ -154,41 +173,6 @@ export default function TemporaryDrawer() {
                   list={statusList}
                   handleChange={handleStatusChange}
                 />
-                {/* <FormControl
-                  className="w-full"
-                  sx={{
-                    ".MuiOutlinedInput-notchedOutline": {
-                      borderStyle: "none",
-                    },
-                  }}
-                >
-                  <Select
-                    className="!rounded-xl bg-[#EFF1F6] border-[#EFF1F6] !text-sm"
-                    sx={{ "& .MuiSelect-outlined": { padding: "14px 16px" } }}
-                    multiple
-                    value={status}
-                    onChange={handleStatusChange}
-                    input={<OutlinedInput label="Tag" />}
-                    renderValue={() => status.join(", ")}
-                  >
-                    {statusList.map((name) => (
-                      <MenuItem key={name} value={name}>
-                        <Checkbox
-                          checked={status.indexOf(name) > -1}
-                          sx={{
-                            color: "black",
-                            "&.Mui-checked": {
-                              color: "black",
-                            },
-                          }}
-                        />
-                        <ListItemText className="font-semibold text-sm text-[#131316]">
-                          {name}
-                        </ListItemText>
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl> */}
               </div>
             </div>
             <div className="absolute w-full bottom-0">
@@ -199,7 +183,7 @@ export default function TemporaryDrawer() {
                   css={`
                     ${applyButton ? "bg-[#131316] text-white" : "bg-[#DBDEE5]"}
                   `}
-                  onClick={() => console.log("Hello")}
+                  onClick={() => console.log(reactState)}
                 />
               </div>
             </div>

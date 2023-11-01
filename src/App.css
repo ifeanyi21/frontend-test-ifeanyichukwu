@@ -3,14 +3,37 @@
     0px 2px 6px 0px rgba(45, 59, 67, 0.06);
 }
 
-body{
+body {
   font-family: degular, sans-serif;
 }
 
-.MuiMenu-paper{
+.MuiMenu-paper {
   max-height: 340px !important;
 }
 
-.AppBar{
-  box-shadow: 0px 6px 12px 0px rgba(92, 115, 131, 0.08), 0px 4px 8px 0px rgba(92, 115, 131, 0.08);
+.AppBar {
+  box-shadow: 0px 6px 12px 0px rgba(92, 115, 131, 0.08),
+    0px 4px 8px 0px rgba(92, 115, 131, 0.08);
+}
+
+.appBarImage{
+  filter: grayscale();
+}
+
+.appBarImage:hover{
+  filter: none;
+}
+
+.ant-picker-dropdown-placement-bottomLeft,
+.ant-picker-dropdown-placement-bottomRight {
+  z-index: 100000000000;
+}
+
+.ant-picker-cell-selected > .ant-picker-cell-inner {
+  background: black !important;
+  border-radius: 100px !important;
+}
+
+.ant-picker-footer {
+  display: none;
 }

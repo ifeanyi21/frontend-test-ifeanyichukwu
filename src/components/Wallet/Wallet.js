@@ -4,11 +4,10 @@ import { useQuery } from "react-query";
 import { getWallet } from "../api/api";
 import Spinner from "../Spinner/Spinner";
 import Chart from "../Charts/LineChart";
+import Divider from "../Divider";
 
 const Wallet = () => {
   const { isLoading, data } = useQuery("wallet", getWallet);
-
-  console.log(data);
 
   if (isLoading) return <Spinner />;
   return (
@@ -17,7 +16,9 @@ const Wallet = () => {
         <div className="flex gap-16">
           <div>
             <p className="text-sm text-[#56616B]">Available Balance</p>
-            <p className="text-3xl font-bold text-[#131316]">USD {data.balance.toFixed(2)}</p>
+            <p className="text-3xl font-bold text-[#131316]">
+              USD {data.balance.toFixed(2)}
+            </p>
           </div>
           <div>
             <button className="px-7 py-[14px] w-[167px] bg-black text-white rounded-[100px] font-semibold text-base">
@@ -26,6 +27,11 @@ const Wallet = () => {
           </div>
         </div>
         <Chart />
+        <Divider/>
+        <div className="flex justify-between items-center mt-[15px]">
+          <div>Apr 1, 2022</div>
+          <div>Apr 30, 2022</div>
+        </div>
       </div>
       <div>
         <div className="mb-8 w-[271px]">
@@ -35,7 +41,9 @@ const Wallet = () => {
               <img src={Info} alt="info" />
             </button>
           </div>
-          <p className="text-[28px] font-bold text-[#131316]">USD {data.ledger_balance.toFixed(2)}</p>
+          <p className="text-[28px] font-bold text-[#131316]">
+            USD {data.ledger_balance.toFixed(2)}
+          </p>
         </div>
         <div className="mb-8">
           <div className="flex justify-between">
@@ -44,7 +52,9 @@ const Wallet = () => {
               <img src={Info} alt="info" />
             </button>
           </div>
-          <p className="text-[28px] font-bold text-[#131316]">USD {data.total_payout.toFixed(2)}</p>
+          <p className="text-[28px] font-bold text-[#131316]">
+            USD {data.total_payout.toFixed(2)}
+          </p>
         </div>
         <div className="mb-8">
           <div className="flex justify-between">
@@ -53,7 +63,9 @@ const Wallet = () => {
               <img src={Info} alt="info" />
             </button>
           </div>
-          <p className="text-[28px] font-bold text-[#131316]">USD {data.total_revenue.toFixed(2)}</p>
+          <p className="text-[28px] font-bold text-[#131316]">
+            USD {data.total_revenue.toFixed(2)}
+          </p>
         </div>
         <div>
           <div className="flex justify-between">
@@ -62,7 +74,9 @@ const Wallet = () => {
               <img src={Info} alt="info" />
             </button>
           </div>
-          <p className="text-[28px] font-bold text-[#131316]">USD {data.pending_payout.toFixed(2)}</p>
+          <p className="text-[28px] font-bold text-[#131316]">
+            USD {data.pending_payout.toFixed(2)}
+          </p>
         </div>
       </div>
     </div>
