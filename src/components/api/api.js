@@ -7,3 +7,8 @@ export const getWallet = async () => {
   const response = await fetch("https://fe-task-api.mainstack.io/wallet");
   return response.json();
 };
+
+export const getUser = async () => {
+  const response = await fetch("https://fe-task-api.mainstack.io/user");
+  return response.json();
+};

@@ -177,13 +177,13 @@ export default function TemporaryDrawer() {
             </div>
             <div className="absolute w-full bottom-0">
               <div className="flex justify-between gap-3 items-start bottom-0">
-                <Button text={"Clear"} onClick={() => console.log("Hello")} />
+                <Button text={"Clear"}/>
                 <Button
                   text={"Apply"}
                   css={`
                     ${applyButton ? "bg-[#131316] text-white" : "bg-[#DBDEE5]"}
                   `}
-                  onClick={() => console.log(reactState)}
+                  onClick={() => dispatch({type:ACTION_TYPES.FILTER})}
                 />
               </div>
             </div>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import FilterButton from "../Buttons/FilterButton";
 import Transaction from "./Transaction";
 import DownloadIcon from "../assests/icons/download.svg";
@@ -6,9 +6,17 @@ import FilterModal from "../FilterModal";
 import { useQuery } from "react-query";
 import Spinner from "../Spinner/Spinner";
 import { getTranscations } from "../api/api";
+import Filter from "../services/context/store";
+import { ACTION_TYPES } from "../services/actions/actions";
 
 const Table = () => {
   const { isLoading, data } = useQuery("transactions", getTranscations);
+
+  const [, dispatch] = React.useContext(Filter);
+
+  useEffect(() => {
+    dispatch({ type: ACTION_TYPES.DATA, payload: data });
+  }, [data, dispatch]);
 
   if (isLoading) return <Spinner />;
   return (

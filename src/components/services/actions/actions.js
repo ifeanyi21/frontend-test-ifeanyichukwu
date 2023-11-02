@@ -3,4 +3,7 @@ export const ACTION_TYPES = {
   STATUS: "ADD_STATUS",
   STARTDATE: "START_DATE",
   ENDDATE: "END_DATE",
+  FILTER: "FILTER",
+  DATA: "DATA",
+  LOGIN: "LOGIN",
 };

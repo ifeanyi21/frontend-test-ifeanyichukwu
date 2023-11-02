@@ -15,6 +15,8 @@ const INITIAL_STATE = {
   status: ["Successful", "Pending", "Failed"],
   start: "",
   end: "",
+  data: [],
+  user: null,
 };
 
 export function FilterProvider({ children }) {

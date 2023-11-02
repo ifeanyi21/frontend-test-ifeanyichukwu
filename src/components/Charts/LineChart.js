@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { LineChart, Line, Tooltip } from "recharts";
-import data from "../../dummyData";
+import Filter from "../services/context/store";
 
 const Chart = () => {
+   const [state] = useContext(Filter);
   return (
     <LineChart
       width={756}
       height={300}
-      data={data}
+      data={state.data}
       margin={{
         top: 5,
         right: 30,
